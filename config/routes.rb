@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root "main#index"
 
-  resources :items, only: [:index] do
+  resources :items, only: [ :index ] do
     collection { post :import }
   end
-  resources :cities, only: [:index] do
+  resources :cities, only: [ :index ] do
     collection { post :import }
   end
 
