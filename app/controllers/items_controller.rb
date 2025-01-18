@@ -6,14 +6,30 @@ class ItemsController < ApplicationController
   end
 
   def import
+    # アップロード失敗時に@citiesを渡すため
+    @cities = City.all
+
     if params[:file].present?
       file = params[:file]
-      CSV.foreach(file.path, headers: true, encoding: "UTF-8") do |row|
-        Item.find_or_create_by(name: row["name"])
+
+      # ファイルの拡張子をチェック
+      if !file.original_filename.match?(/\.csv\z/i)
+        flash.now[:error] = "CSVファイルをアップロードしてください。"
+        return render :index, status: :unprocessable_entity
       end
-      redirect_to items_path
+
+      CSV.foreach(file.path, headers: true, encoding: "UTF-8") do |row|
+        if row["name"].present?
+          Item.find_or_create_by(name: row["name"])
+        else
+          flash.now[:error] = "CSVファイルの１行目は「name」にしてください。"
+          return render :index, status: :unprocessable_entity
+        end
+      end
+      redirect_to items_path, success: "CSVのデータをインポートしました。"
     else
-      redirect_to items_path
+      flash.now[:info] = "CSVファイルを選択してください。"
+      render :index, status: :unprocessable_entity
     end
   end
 end

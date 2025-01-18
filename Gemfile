@@ -4,9 +4,9 @@ source "https://rubygems.org"
 gem "rails", "~> 7.2.2", ">= 7.2.2.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-# Use postgresql as the database for Active Record
+# PostgreSQLデータベースとの接続を提供するライブラリ
 gem "pg", "~> 1.1"
-# Use the Puma web server [https://github.com/puma/puma]
+# Railsアプリケーションのウェブサーバー
 gem "puma", ">= 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
