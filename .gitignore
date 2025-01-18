@@ -39,3 +39,7 @@
 
 /node_modules
 /vendor/bundle
+
+# csvファイル
+/cities.csv
+/items.csv

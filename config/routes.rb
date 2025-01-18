@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   root "main#index"
 
+  resources :items, only: [ :index ] do
+    collection { post :import }
+  end
+  resources :cities, only: [ :index ] do
+    collection { post :import }
+  end
+
   # ヘルスチェック用
   get "up" => "rails/health#show", as: :rails_health_check
 
