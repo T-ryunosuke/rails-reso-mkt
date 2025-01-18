@@ -1,0 +1,31 @@
+<h1>Cities</h1>
+
+<%= form_with url: import_cities_path, local: false, multipart: true do |f| %>
+<div>
+  <%= f.file_field :file %>
+</div>
+<div>
+  <%= f.submit "CSVインポート", class: "rounded-full border border-slate-600 bg-slate-700 text-white font-thin cursor-pointer hover:text-black hover:bg-white hover:shadow-md transition duration-200" %>
+</div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>都市名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @cities.present? %>
+    <% @cities.each do |city| %>
+    <tr>
+      <td><%= city.name %></td>
+    </tr>
+    <% end %>
+    <% else %>
+    <tr>
+      <td colspan="1">データがありません</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

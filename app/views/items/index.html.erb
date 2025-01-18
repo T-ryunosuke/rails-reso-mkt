@@ -1,0 +1,33 @@
+<h1>Items</h1>
+
+<%= form_with url: import_items_path, local: true, multipart: true do |f| %>
+  <div>
+    <%= f.file_field :file %>
+  </div>
+  <div>
+    <%= f.submit "CSVインポート", class: "w-1/5 md:w-1/6 mb-10 rounded-full border border-slate-600 bg-slate-700 text-white font-normal cursor-pointer hover:text-black hover:bg-white hover:shadow-md transition duration-200" %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @items.present? %>
+    <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.name %></td>
+    </tr>
+    <% end %>
+    <% else %>
+    <tr>
+      <td colspan="1">データがありません</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
