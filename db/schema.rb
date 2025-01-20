@@ -24,15 +24,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_17_050937) do
 
   create_table "prices", force: :cascade do |t|
     t.bigint "city_id", null: false
-    t.bigint "items_id", null: false
+    t.bigint "item_id", null: false
     t.integer "price_percentage", null: false
     t.boolean "trend", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_prices_on_city_id"
-    t.index ["items_id"], name: "index_prices_on_items_id"
+    t.index ["item_id"], name: "index_prices_on_item_id"
   end
 
   add_foreign_key "prices", "cities"
-  add_foreign_key "prices", "items", column: "items_id"
+  add_foreign_key "prices", "items"
 end
