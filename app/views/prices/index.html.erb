@@ -1,4 +1,4 @@
-<div class="flex items-center justify-center h-screen">
+<div class="flex items-center justify-center">
 
   <div class="flex-col w-11/12">
     <!-- 検索ボックス(都市名&商品名) -->
@@ -8,26 +8,22 @@
     </div>
 
     <!-- グラフ -->
-
     <div class="overflow-x-auto bg-gray-200 p-2 rounded">
       <table class="min-w-full border-collapse border border-gray-200">
         <thead class="bg-gray-50">
           <tr>
             <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">都市名</th>
+            <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">商品名</th>
             <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">動向</th>
             <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">価格割合</th>
             <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">最終更新</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="<%= cycle('bg-white', 'bg-gray-50') %>">
-            <td class="px-4 py-2 text-left font-normal border border-gray-300">a</td>
-            <td class="px-4 py-2 text-left font-normal border border-gray-300">b</td>
-            <td class="px-4 py-2 text-left font-normal border border-gray-300">c</td>
-            <td class="px-4 py-2 text-left font-normal border border-gray-300">d</td>
-          </tr>
+          <%= render @prices %>
         </tbody>
       </table>
     </div>
   </div>
+
 </div>

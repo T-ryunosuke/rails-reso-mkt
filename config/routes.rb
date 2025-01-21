@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "main#index"
+  root "prices#index"
 
   resources :items, only: [ :index ] do
     collection { post :import }
