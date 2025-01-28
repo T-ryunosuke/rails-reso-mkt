@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :prices, only: [] do
     collection do
       get :select_city
+      get :edit_by_city
+      post :edit_by_city
+      post :add_price_field
     end
   end
 

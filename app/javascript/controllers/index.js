@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import ModalController from "./modal_controller";
 application.register("modal", ModalController);
+
+import AddPriceController from "./add_price_controller";
+application.register("add-price", AddPriceController);
