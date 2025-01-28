@@ -4,7 +4,7 @@
 <head>
   <title><%= content_for(:title) || "Myapp" %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -18,9 +18,10 @@
 </head>
 
 <body class="min-h-screen">
+  <%= turbo_frame_tag "modal" %>
+
   <header class="fixed top-0 left-0 w-full">
     <%= render "shared/header" %>
-    <%= render "shared/flash_message" %>
   </header>
 
   <main class="mt-20">
