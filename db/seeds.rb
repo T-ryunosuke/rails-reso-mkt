@@ -13,7 +13,7 @@ cities.each do |city|
     price_percentage = rand(90..110)
 
     # ランダムに動向を決定（true: 上昇, false: 下降）
-    trend = [true, false].sample
+    trend = [ true, false ].sample
 
     # 価格データを作成
     Price.create!(
@@ -24,6 +24,4 @@ cities.each do |city|
     )
   end
 end
-
 puts "価格データが作成されました。"
-

@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       get :edit_by_city
       post :edit_by_city
       post :add_price_field
+      get :confirm
+      post :confirm
+      patch :update_by_city
     end
   end
 

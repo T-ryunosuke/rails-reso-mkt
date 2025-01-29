@@ -70,4 +70,49 @@ class PricesController < ApplicationController
       flash.now.alert = "指定した名前の商品は登録されていません"
     end
   end
+
+  def confirm
+    # pricesはネスト構造の情報として渡されているのでPricesモデルのインスタンスとして扱うことはできない
+    if params[:prices].blank?
+      flash.now.alert = "商品が選択されていません"
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("flash", partial: "shared/flash_message"),
+            turbo_stream.update("modal", "")
+          ]
+        end
+      end
+      return
+    end
+    @prices = params[:prices]
+  end
+
+  # 更新の競合に関してはアプリの用途的に気にしない
+  def update_by_city
+    ActiveRecord::Base.transaction do
+      params[:prices].each do |id, attributes|
+        price_percentage = attributes[:price_percentage]
+        trend = attributes[:trend]
+
+        price = Price.find(id)
+        price.update(
+          # price_percentageをintegerに変換
+          price_percentage: price_percentage.to_i,
+          # trendをbooleanに変換
+          trend: trend == "true"
+        )
+      end
+    end
+    redirect_to root_path, notice: "更新が完了しました"
+  rescue ActiveRecord::RecordInvalid => e
+    flash.now[:alert] = "更新に失敗しました: #{e.message}"
+    redirect_to root_path, status: :unprocessable_entity
+  end
+
+  # private
+
+  # def price_params
+  #   params.require(:price).permit(:price_percentage, :trend)
+  # end
 end
