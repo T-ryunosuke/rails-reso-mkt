@@ -2,8 +2,7 @@
 
 <div class="text-center my-6">
   <%= form_with url: add_price_field_prices_path, method: :post, data: { controller: "add-price", action: "turbo:submit-end->add-price#clearField" } do |form| %>
-  <%= hidden_field_tag :city_id, @city.id %>
-  <%= hidden_field_tag :count, @count %>
+  <%= form.hidden_field :city_id, value: @city.id %>
   <%= form.text_field :item_name, placeholder: "商品名", data: { add_price_target: "itemName" } %>
   <%= form.submit "追加", class: "text-sm" %>
   <% end %>
@@ -11,7 +10,7 @@
 
 <div class="text-center">
   <%= form_with url: confirm_prices_path, method: :post, data: { turbo_frame: "modal" } do |form| %>
-  <%= hidden_field_tag :city_id, @city.id %>
+  <%= form.hidden_field :city_id, value: @city.id %>
   <div id="price-fields">
     <!-- turbo-stream -->
   </div>

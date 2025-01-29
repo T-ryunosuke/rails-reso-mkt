@@ -1,9 +1,9 @@
-<!-- パラメータをネスト構造にして送る -->
+<!-- パラメータをネストして送る -->
 <div id="price_field_<%= price.id %>">
   <p>商品: <%= price.item.name %></p>
-  <%= hidden_field_tag "prices[#{price.id}][id]", price.id %>
+  <%= hidden_field_tag "prices[#{price.id}][name]", price.item.name %>
   <%= label_tag "prices[#{price.id}][price_percentage]", "価格割合" %>
   <%= number_field_tag "prices[#{price.id}][price_percentage]", price.price_percentage %>
   <%= label_tag "prices[#{price.id}][trend]", "動向" %>
-  <%= check_box_tag "prices[#{price.id}][trend]", true, price.trend %>
+  <%= check_box_tag "prices[#{price.id}][trend]", true, price.trend, checked_value: "true", unchecked_value: "false" %>
 </div>
