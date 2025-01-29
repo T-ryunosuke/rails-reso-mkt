@@ -4,7 +4,7 @@
 <head>
   <title><%= content_for(:title) || "Myapp" %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -13,12 +13,18 @@
   <link rel="manifest" href="/manifest.json">
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+  <script src="https://kit.fontawesome.com/12b5d77523.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="min-h-screen">
+  <%= turbo_frame_tag "modal" %>
+
   <header class="fixed top-0 left-0 w-full">
     <%= render "shared/header" %>
-    <%= render "shared/flash_message" %>
+    <div id="flash">
+      <%= render "shared/flash_message" %>
+    </div>
   </header>
 
   <main class="mt-20">

@@ -1,0 +1,5 @@
+<%= turbo_stream_flash %>
+
+<% if @price.present? %>
+  <%= turbo_stream.append "price-fields", partial: "price_fields", locals: { price: @price } %>
+<% end %>

@@ -1,12 +1,35 @@
 Rails.application.routes.draw do
-  root "main#index"
+  root "prices#index"
 
   resources :items, only: [ :index ] do
     collection { post :import }
   end
+
   resources :cities, only: [ :index ] do
-    collection { post :import }
+    collection do
+      post :import
+    end
   end
+
+  resources :prices, only: [] do
+    collection do
+      get :select_city
+      get :edit_by_city
+      post :edit_by_city
+      post :add_price_field
+      get :confirm
+      post :confirm
+      patch :update_by_city
+    end
+  end
+
+  # resources :prices, only: [] do
+  #   collection do
+  #     get :select_city # 都市選択画面
+  #     get :edit_by_city # 選択した都市の編集画面
+  #   end
+  #   patch :update_multiple, on: :collection # 一括更新用
+  # end
 
   # ヘルスチェック用
   get "up" => "rails/health#show", as: :rails_health_check
