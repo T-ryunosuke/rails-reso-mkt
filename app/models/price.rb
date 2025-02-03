@@ -8,10 +8,10 @@ class Price < ApplicationRecord
   validates :trend, inclusion: { in: [ true, false ] }
 
   def self.ransackable_attributes(auth_object = nil)
-    ["city_id", "created_at", "id", "item_id", "price_percentage", "trend", "updated_at"]
+    [ "city_id", "created_at", "id", "item_id", "price_percentage", "trend", "updated_at" ]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["city", "item"]
+    [ "city", "item" ]
   end
 end
