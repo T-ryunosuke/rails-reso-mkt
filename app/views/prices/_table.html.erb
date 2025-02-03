@@ -1,0 +1,19 @@
+<div class="overflow-x-auto bg-gray-200 p-2 rounded">
+  <%= turbo_frame_tag "prices-list" do %>
+  <table class="min-w-full border-collapse border border-gray-200">
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">都市名</th>
+        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">商品名</th>
+        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">動向</th>
+        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">価格割合</th>
+        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">最終更新</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- app/views/prices/_price.html.erb -->
+      <%= render @prices %>
+    </tbody>
+  </table>
+  <% end %>
+</div>

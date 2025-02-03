@@ -11,6 +11,7 @@
 <div class="text-center">
   <%= form_with url: confirm_prices_path, method: :post, data: { turbo_frame: "modal" } do |form| %>
   <%= form.hidden_field :city_id, value: @city.id %>
+  <!-- app/views/prices/_price_fields.html.erb -->
   <div id="price-fields">
     <!-- turbo-stream -->
   </div>

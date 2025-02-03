@@ -2,13 +2,17 @@ class PricesController < ApplicationController
   # controllersのconcernsにあるframeable.rbをインクルード
   include Frameable
   # 本番環境で指定したアクションへのリクエストがTurboFrameでない場合は、トップページにリダイレクトされる。
-  before_action :ensure_turbo_frame_response, only: %w[select_city], if: :production_environment?
+  before_action :ensure_turbo_frame_response, only: %w[select_city confirm], if: :production_environment?
 
   # ActionController::InvalidAuthenticityTokenのエラー回避
   protect_from_forgery
 
   def index
-    @prices = Price.includes(:city, :item).all
+    # 初期化。引数はなくてもOK。
+    @search_form = SearchPricesForm.new(search_params)
+    # @search_formを元にsearch_prices_formのメソッドで絞り込み
+    @prices = @search_form.search
+    @cities = City.all
   end
 
   # どの都市の商品の情報を変更するか選択する
@@ -110,7 +114,12 @@ class PricesController < ApplicationController
     redirect_to root_path, status: :unprocessable_entity
   end
 
-  # private
+  private
+
+  # :search_prices_formはasで指定しない限り自動的にオブジェクトのクラス名となる
+  def search_params
+    params.fetch(:search_prices_form, {}).permit(:city_id, :item_name, :min_price, :max_price, :trend, :sort_order)
+  end
 
   # def price_params
   #   params.require(:price).permit(:price_percentage, :trend)
