@@ -1,29 +1,8 @@
 <div class="flex items-center justify-center">
-
-  <div class="flex-col w-11/12">
-    <!-- 検索ボックス(都市名&商品名) -->
-    <div class="flex mx-auto">
-      <p>都市：</p>
-      <p>商品：</p>
-    </div>
-
-    <!-- グラフ -->
-    <div class="overflow-x-auto bg-gray-200 p-2 rounded">
-      <table class="min-w-full border-collapse border border-gray-200">
-        <thead class="bg-gray-50">
-          <tr>
-            <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">都市名</th>
-            <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">商品名</th>
-            <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">動向</th>
-            <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">価格割合</th>
-            <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">最終更新</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render @prices %>
-        </tbody>
-      </table>
-    </div>
+  <div class="w-11/12">
+    <!-- app/views/prices/_search.html.erb -->
+    <%= render "search" %>
+    <!-- app/views/prices/_table.html.erb -->
+    <%= render "table" %>
   </div>
-
 </div>

@@ -6,13 +6,12 @@ Rails.application.routes.draw do
   end
 
   resources :cities, only: [ :index ] do
-    collection do
-      post :import
-    end
+    collection { post :import }
   end
 
-  resources :prices, only: [] do
+  resources :prices, only: [ :index ] do
     collection do
+      get :search
       get :select_city
       get :edit_by_city
       post :edit_by_city

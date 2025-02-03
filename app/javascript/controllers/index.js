@@ -4,8 +4,14 @@
 
 import { application } from "./application"
 
-import ModalController from "./modal_controller";
-application.register("modal", ModalController);
+import AddPriceController from "./add_price_controller"
+application.register("add-price", AddPriceController)
 
-import AddPriceController from "./add_price_controller";
-application.register("add-price", AddPriceController);
+import FormController from "./form_controller"
+application.register("form", FormController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
+import ToggleController from "./toggle_controller"
+application.register("toggle", ToggleController)
