@@ -1,17 +1,18 @@
+<!-- turbo-frameがレスポンスを受け取り、"modal"フレームの中を更新 -->
 <%= turbo_frame_tag "modal" do %>
-  <!-- モーダルのラッパー -->
-  <div data-controller="modal" data-action="keydown.esc->modal#hide" role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
+<!-- モーダルのラッパー -->
+<div data-controller="modal" data-action="keydown.esc->modal#hide" role="dialog" tabindex="-1" class="fixed inset-0 z-50 flex items-center justify-center w-full h-screen px-8">
 
-    <!-- 背景 -->
-    <%= button_tag nil, type: :button, data: { action: "modal#hide" }, class: "fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30" %>
+  <!-- 背景 -->
+  <%= button_tag nil, type: :button, data: { action: "modal#hide" }, class: "fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30" %>
 
-    <div class="relative z-20 w-full max-w-2xl min-h-48 overflow-y-auto bg-white shadow-lg rounded-md">
+  <div class="relative z-20 w-full max-w-2xl min-h-60 overflow-y-auto bg-white shadow-lg rounded-md flex flex-col justify-center items-center p-6">
 
-      <!-- ×ボタン -->
-      <%= button_tag "×", type: :button, data: {action: "modal#hide"}, class: "absolute top-0 right-0 px-3 py-1 text-gray-700 bg-white" %>
+    <!-- ×ボタン -->
+    <%= button_tag "×", type: :button, data: {action: "modal#hide"}, class: "absolute top-0 right-0 px-3 py-1 text-gray-700 bg-white" %>
 
-      <%= yield %>
+    <%= yield %>
 
-    </div>
   </div>
+</div>
 <% end %>

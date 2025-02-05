@@ -1,4 +1,4 @@
 <%= render "shared/modal" do %>
 <!-- app/views/prices/_city_selector.html.erb -->
-<%= render "city_selector", cities: @cities %>
+<%= render "city_selector", cities: @cities, session_error: @session_error %>
 <% end %>

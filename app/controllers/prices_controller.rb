@@ -32,12 +32,18 @@ class PricesController < ApplicationController
       @city = City.find(session[:city_id])
       session[:added_item_ids] = []
     else
-      redirect_to select_city_prices_path, alert: "都市が選択されていません"
+      redirect_to root_path, alert: "更新操作途中で一定時間経過したためセッションが切れました"
     end
   end
 
   # 相場情報を更新する商品を選択
   def add_price_field
+    # セッションが切れていないか確認
+    if session[:added_item_ids].nil?
+      redirect_to edit_by_city_prices_path, alert: "更新操作途中で一定時間経過したためセッションが切れました"
+      return
+    end
+
     # formから商品名が渡されているか判定
     if params[:item_name].blank?
       flash.now.notice = "商品名を入力してください"
@@ -48,12 +54,6 @@ class PricesController < ApplicationController
     city_id = params[:city_id]
 
     if item_id
-      # セッションが切れていないか確認
-      if session[:added_item_ids].nil?
-        redirect_to edit_by_city_prices_path, alert: "セッションが切れています"
-        return
-      end
-
       # 更新対象に追加しようとしている商品が既ににセッションにないか判定
       if session[:added_item_ids].include?(item_id)
         flash.now.alert = "この商品はすでに追加されています"

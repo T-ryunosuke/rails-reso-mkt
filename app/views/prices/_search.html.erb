@@ -22,8 +22,8 @@
           <label for="toggle-checkbox" class="relative inline-flex items-center cursor-pointer">
             <%= form.check_box :sort_order, { id: "toggle-checkbox", class: "sr-only peer", data: { toggle_target: "checkbox" } }, true, false %>
 
-            <div class="w-8 h-5 bg-gray-300 peer-checked:bg-green-500 rounded-full transition duration-300"></div>
-            <div class="absolute left-1 top-1.2 w-3.5 h-3.5 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-2.5"></div>
+            <div class="w-8 h-5 bg-gray-300 peer-checked:bg-green-500 rounded-full transition duration-300 z-0"></div>
+            <div class="absolute left-1 top-1.2 w-3.5 h-3.5 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-2.5 z-0"></div>
           </label>
         </div>
       </div>

@@ -1,10 +1,13 @@
-<div class="flex w-full text-white bg-purple-950 z-50">
-  <div class="pl-3 content-center h-16">
+<div class="flex items-center justify-between w-full h-16 text-white bg-purple-950">
+
+  <div class="pl-3">
     <%= link_to root_path do %>
     Resonance-MKT
     <% end %>
-
-    <%= link_to "都市を選ぶ", select_city_prices_path, data: { turbo_frame: "modal" } %>
-
   </div>
+
+  <div class="pr-3">
+    <%= link_to "都市を選ぶ", select_city_prices_path, class: "cursor-pointer", data: { turbo_frame: "modal" } %>
+  </div>
+
 </div>

@@ -1,20 +1,29 @@
-<h1 class="text-center text-4xl">対象都市：<%= @city.name %></h1>
+<h1 class="text-center text-3xl py-4">対象都市：<%= @city.name %></h1>
 
 <div class="text-center my-6">
   <%= form_with url: add_price_field_prices_path, method: :post, data: { controller: "add-price", action: "turbo:submit-end->add-price#clearField" } do |form| %>
   <%= form.hidden_field :city_id, value: @city.id %>
-  <%= form.text_field :item_name, placeholder: "商品名", data: { add_price_target: "itemName" } %>
-  <%= form.submit "追加", class: "text-sm" %>
+  <div class="flex justify-center">
+    <%= form.text_field :item_name, placeholder: "商品名", class: "pl-1 border rounded-sm", data: { add_price_target: "itemName" } %>
+    <%= button_tag type: "submit", class: "flex items-center justify-center w-5 h-5 ml-1 mt-1 bg-purple-700 rounded-full cursor-pointer hover:bg-gray-500 transition duration-500" do %>
+    <i class="fa-solid fa-plus text-white"></i>
+    <% end %>
+  </div>
   <% end %>
 </div>
 
-<div class="text-center">
+<div class="w-full">
   <%= form_with url: confirm_prices_path, method: :post, data: { turbo_frame: "modal" } do |form| %>
   <%= form.hidden_field :city_id, value: @city.id %>
   <!-- app/views/prices/_price_fields.html.erb -->
   <div id="price-fields">
     <!-- turbo-stream -->
   </div>
-  <%= form.submit "更新" %>
+  <div class="flex justify-center text-white text-sm text-thin">
+    <%= button_tag type: "submit", class: "flex items-center justify-center ml-1 mt-4 px-2 py-1 bg-purple-700 rounded cursor-pointer hover:bg-gray-500 transition duration-300" do %>
+    <i class="fa-solid fa-rotate-right pr-1"></i>
+    <span>更新</span>
+    <% end %>
+  </div>
   <% end %>
 </div>

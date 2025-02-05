@@ -1,9 +1,13 @@
 <!-- パラメータをネストして送る -->
-<div id="price_field_<%= price.id %>">
-  <p>商品: <%= price.item.name %></p>
+<div id="price_field_<%= price.id %>" class="flex justify-between w-2/3 my-4 mx-auto py-2 px-4 border-b border-black/50 text-sm">
+  <p><%= price.item.name %>：</p>
   <%= hidden_field_tag "prices[#{price.id}][name]", price.item.name %>
-  <%= label_tag "prices[#{price.id}][price_percentage]", "価格割合" %>
-  <%= number_field_tag "prices[#{price.id}][price_percentage]", price.price_percentage %>
-  <%= label_tag "prices[#{price.id}][trend]", "動向" %>
-  <%= check_box_tag "prices[#{price.id}][trend]", true, price.trend, checked_value: "true", unchecked_value: "false" %>
+  <div>
+    <%= label_tag "prices[#{price.id}][price_percentage]", "価格割合" %>
+    <%= number_field_tag "prices[#{price.id}][price_percentage]", price.price_percentage, class: "w-12 pl-1 border rounded-sm" %>
+  </div>
+  <div>
+    <%= label_tag "prices[#{price.id}][trend]", "動向" %>
+    <%= check_box_tag "prices[#{price.id}][trend]", true, price.trend, checked_value: "true", unchecked_value: "false" %>
+  </div>
 </div>
