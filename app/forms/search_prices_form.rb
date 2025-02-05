@@ -10,7 +10,15 @@ class SearchPricesForm
   attribute :trend, :string, default: "all"
   attribute :sort_order, :boolean
 
+  # 「->」はアロー演算子（lambda）
+  validates :city_id, presence: true, if: -> { item_name.blank? }
+  validates :item_name, presence: true, if: -> { city_id.blank? }
+
   def search
+    if invalid?
+      return Price.none
+    end
+
     scope = Price.ransack(city_id_eq: city_id).result
 
     if item_name.present?
