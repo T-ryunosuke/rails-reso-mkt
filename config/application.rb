@@ -24,7 +24,10 @@ module Myapp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # `app/forms` ディレクトリをオートロード対象に追加
+    # "app/forms"ディレクトリをオートロード対象に追加
     config.autoload_paths << Rails.root.join("app/forms")
+
+    # デフォルトの言語を日本語（:ja）に設定
+    config.i18n.default_locale = :ja
   end
 end

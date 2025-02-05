@@ -1,0 +1,20 @@
+ja:
+  helpers:
+    submit:
+      next: 次に進む
+      confirm: 確定して更新
+      update: 更新
+      import: CSVインポート
+    label:
+      city: 都市：
+      item: 商品：
+      trend: 動向：
+  header:
+    links:
+      root: Resonance-MKT
+      city_select: 都市を選ぶ
+  footer:
+    links:
+      privacy_policy: プライバシーポリシー
+      terms_of_service: 利用規約
+      contact: お問い合わせ

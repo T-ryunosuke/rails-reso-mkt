@@ -16,6 +16,16 @@
       <%= render @prices %>
     </tbody>
   </table>
-  <%= render "shared/error_messages", object: @search_form %>
+
+  <% if @search_form.errors.any? %>
+  <div class="text-center py-2">
+    <%= render "shared/error_messages", object: @search_form %>
+  </div>
+  <% elsif @prices.empty? %>
+  <p class="py-2 mt-1 text-center text-xs md:text-sm text-gray-500">
+    該当の条件はありませんでした
+  </p>
+  <% end %>
+
   <% end %>
 </div>

@@ -11,8 +11,10 @@ class SearchPricesForm
   attribute :sort_order, :boolean
 
   # 「->」はアロー演算子（lambda）
-  validates :city_id, presence: true, if: -> { item_name.blank? }
-  validates :item_name, presence: true, if: -> { city_id.blank? }
+  # validates :city_id, presence: true, if: -> { item_name.blank? }
+  # validates :item_name, presence: true, if: -> { city_id.blank? }
+
+  validate :city_or_item_must_be_present
 
   def search
     if invalid?
@@ -46,5 +48,14 @@ class SearchPricesForm
     end
 
     scope
+  end
+
+  private
+
+  # カスタムバリデーション
+  def city_or_item_must_be_present
+    if city_id.blank? && item_name.blank?
+      errors.add(:base, :city_or_item_required)
+    end
   end
 end
