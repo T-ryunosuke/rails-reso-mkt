@@ -8,7 +8,7 @@
 
     <div class="flex mb-2 justify-between border-b border-gray-300">
       <p><%= attributes[:name] %></p>
-      <p class="mx-4">価格割合： <%= attributes[:price_percentage] %>%</p>
+      <p class="mx-4">価格割合：<%= attributes[:price_percentage] %>%</p>
       <p>動向：
         <% if attributes[:trend] %>
         <i class="fa-solid fa-arrow-trend-up text-green-500"></i>
@@ -24,7 +24,7 @@
 
     <% end %>
   </div>
-  <div class="mt-4 text-white text-center">
-    <%= form.submit "確定して更新", class: "px-2 py-1 bg-purple-700 rounded cursor-pointer hover:bg-gray-500 transition duration-300" %>
+  <div class="mt-8 text-sm text-white text-center">
+    <%= form.submit t("helpers.submit.confirm"), class: "px-2 py-1 bg-purple-700 rounded cursor-pointer hover:bg-gray-500 transition duration-300" %>
   </div>
   <% end %>

@@ -5,7 +5,7 @@
     <div class="flex mx-2">
       <div class="mr-4">
         <div>
-          <%= form.label :city_id, "都市：" %>
+          <%= form.label :city_id, t("helpers.label.city") %>
           <%= form.collection_select :city_id, @cities, :id, :name, { include_blank: "未選択" }, { class: "border rounded-sm p-0.5 w-48" } %>
         </div>
 
@@ -30,12 +30,13 @@
 
       <div>
         <div class="mb-1.5">
-          <%= form.label :item_name, "商品：" %>
+          <%= form.label :item_name, t("helpers.label.item") %>
           <%= form.text_field :item_name, placeholder: "商品を入力", class: "w-44 pl-1 border rounded-sm placeholder-gray-400 placeholder-opacity-50" %>
         </div>
 
         <div class="flex space-x-2">
-          <%= form.label :trend, "動向：" %>
+          <%= form.label :trend, t("helpers.label.trend") %>
+
           <label for="trend_all" class="flex space-x-0.5 cursor-pointer items-center">
             <%= form.radio_button :trend, "all", id: "trend_all" %>
             <span>All</span>
@@ -50,6 +51,7 @@
             <%= form.radio_button :trend, "false", id: "trend_false" %>
             <i class="fa-solid fa-arrow-trend-down text-red-500"></i>
           </label>
+
         </div>
       </div>
     </div>

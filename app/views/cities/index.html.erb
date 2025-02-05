@@ -1,11 +1,11 @@
-<h1>Cities</h1>
+<h1 class="pl-4 mb-6 text-3xl">Cities</h1>
 
-<%= form_with url: import_cities_path, local: false, multipart: true do |f| %>
+<%= form_with url: import_cities_path, local: false, multipart: true do |form| %>
 <div>
-  <%= f.file_field :file %>
+  <%= form.file_field :file %>
 </div>
-<div>
-  <%= f.submit "CSVインポート", class: "rounded-full border border-slate-600 bg-slate-700 text-white font-thin cursor-pointer hover:text-black hover:bg-white hover:shadow-md transition duration-200" %>
+<div class="my-6">
+  <%= form.submit t("helpers.submit.import"), class: "rounded-full border border-slate-600 bg-slate-700 text-white font-thin cursor-pointer hover:text-black hover:bg-white hover:shadow-md transition duration-200" %>
 </div>
 <% end %>
 
