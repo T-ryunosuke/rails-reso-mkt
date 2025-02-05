@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head class="h-scroll scroll-smooth">
   <title><%= content_for(:title) || "Myapp" %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
@@ -17,21 +17,24 @@
   <script src="https://kit.fontawesome.com/12b5d77523.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="min-h-screen">
+<body class="flex flex-col min-h-screen">
   <%= turbo_frame_tag "modal" %>
 
-  <header class="fixed top-0 left-0 w-full">
-    <%= render "shared/header" %>
-    <div id="flash">
+  <div class="flex-1">
+    <header class="fixed top-0 left-0 w-full z-40">
+      <%= render "shared/header" %>
+
+    </header>
+    <div id="flash" class="fixed top-16 left-0 w-full z-10">
       <%= render "shared/flash_message" %>
     </div>
-  </header>
 
-  <main class="mt-20 mb-8">
-    <%= yield %>
-  </main>
+    <main class="mt-20">
+      <%= yield %>
+    </main>
+  </div>
 
-  <footer class="w-full z-50 sm:block">
+  <footer class="w-full z-40 hidden sm:block">
     <%= render "shared/footer" %>
   </footer>
 </body>

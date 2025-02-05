@@ -1,28 +1,30 @@
-<div class="text-center mt-4 text-md">
-  <p>以下の内容で更新します。</p>
-  <p>よろしいですか？</p>
-</div>
-<%= form_with url: update_by_city_prices_path, method: :patch, local: true, data: { turbo: false } do |form| %>
-<div class="my-2">
-  <% @prices.each do |id, attributes| %>
-  <div class="flex justify-center">
-    <p><%= attributes[:name] %></p>
-    <p class="mx-4">価格割合: <%= attributes[:price_percentage] %>%</p>
-    <p>動向:
-      <% if attributes[:trend] %>
-        <i class="fa-solid fa-arrow-trend-up text-green-500"></i>
-      <% else %>
-        <i class="fa-solid fa-arrow-trend-down text-red-500"></i>
-      <% end %>
-    </p>
-
-    <%= form.hidden_field "prices[#{id}][price_percentage]",  value: attributes[:price_percentage] %>
-    <%= form.hidden_field "prices[#{id}][trend]",  value: attributes[:trend] %>
+  <div class="text-center">
+    <p>以下の内容で更新します。</p>
+    <p>よろしいですか？</p>
   </div>
-  <hr>
+  <%= form_with url: update_by_city_prices_path, method: :patch, local: true, data: { turbo: false } do |form| %>
+  <div class="my-4">
+    <% @prices.each do |id, attributes| %>
+
+    <div class="flex mb-2 justify-between border-b border-gray-300">
+      <p><%= attributes[:name] %></p>
+      <p class="mx-4">価格割合： <%= attributes[:price_percentage] %>%</p>
+      <p>動向：
+        <% if attributes[:trend] %>
+        <i class="fa-solid fa-arrow-trend-up text-green-500"></i>
+        <% else %>
+        <i class="fa-solid fa-arrow-trend-down text-red-500"></i>
+        <% end %>
+      </p>
+
+      <%= form.hidden_field "prices[#{id}][price_percentage]",  value: attributes[:price_percentage] %>
+      <%= form.hidden_field "prices[#{id}][trend]",  value: attributes[:trend] %>
+
+    </div>
+
+    <% end %>
+  </div>
+  <div class="mt-4 text-white text-center">
+    <%= form.submit "確定して更新", class: "px-2 py-1 bg-purple-700 rounded cursor-pointer hover:bg-gray-500 transition duration-300" %>
+  </div>
   <% end %>
-</div>
-<div class="text-center">
-  <%= form.submit "確定して更新" %>
-</div>
-<% end %>
