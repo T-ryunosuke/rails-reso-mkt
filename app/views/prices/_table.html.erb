@@ -1,5 +1,6 @@
 <div class="overflow-x-auto bg-gray-200 p-2 rounded">
   <%= turbo_frame_tag "prices-list" do %>
+
   <table class="min-w-full border-collapse border border-gray-200">
     <thead class="bg-gray-50">
       <tr>
@@ -15,5 +16,6 @@
       <%= render @prices %>
     </tbody>
   </table>
+  <%= render "shared/error_messages", object: @search_form %>
   <% end %>
 </div>
