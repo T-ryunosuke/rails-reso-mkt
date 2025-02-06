@@ -5,4 +5,5 @@ ja:
         search_prices_form:
           attributes:
             base:
-              city_or_item_required: "都市または商品のいずれかを指定してください"
+              city_or_item_required: 都市または商品のいずれかを指定してください
+              invalid_sort_key: ソートの指定に問題があるようです

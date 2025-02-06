@@ -8,13 +8,14 @@ class SearchPricesForm
   attribute :min_price, :integer
   attribute :max_price, :integer
   attribute :trend, :string, default: "all"
-  attribute :sort_order, :boolean
+  attribute :sort_key, :string, default: "newest"
 
   # 「->」はアロー演算子（lambda）
   # validates :city_id, presence: true, if: -> { item_name.blank? }
   # validates :item_name, presence: true, if: -> { city_id.blank? }
 
   validate :city_or_item_must_be_present
+  validate :validate_sort_key
 
   def search
     if invalid?
@@ -43,9 +44,7 @@ class SearchPricesForm
       scope = scope.where("price_percentage <= ?", max_price)
     end
 
-    if sort_order
-      scope = scope.order(updated_at: :desc)
-    end
+    scope = apply_sorting(scope)
 
     scope
   end
@@ -56,6 +55,25 @@ class SearchPricesForm
   def city_or_item_must_be_present
     if city_id.blank? && item_name.blank?
       errors.add(:base, :city_or_item_required)
+    end
+  end
+
+  def validate_sort_key
+    unless %w[newest price_percentage item_name].include?(sort_key)
+      errors.add(:base, :invalid_sort_key)
+    end
+  end
+
+  # ソート処理
+  def apply_sorting(scope)
+    scope = scope.joins(:item)
+    case sort_key
+    when "newest"
+      scope.order(updated_at: :desc, "items.name": :desc)
+    when "price_percentage"
+      scope.order(price_percentage: :desc, "items.name": :desc)
+    when "item_name"
+      scope.order("items.name": :desc)
     end
   end
 end

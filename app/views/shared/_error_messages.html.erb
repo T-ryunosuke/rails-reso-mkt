@@ -1,4 +1,4 @@
-<% if object.errors.any? %>
+<% if object.errors.present? %>
 <div class="mt-1 text-xs md:text-sm text-red-500">
   <ul>
     <% object.errors.full_messages.each do |message| %>
