@@ -17,7 +17,7 @@
     </tbody>
   </table>
 
-  <% if @search_form.errors.any? %>
+  <% if @search_form.errors.present? %>
   <div class="text-center py-2">
     <%= render "shared/error_messages", object: @search_form %>
   </div>
