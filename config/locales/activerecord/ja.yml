@@ -1,0 +1,6 @@
+ja:
+  activerecord:
+    attributes:
+      price:
+        price_percentage: 価格割合
+        trend: 動向
