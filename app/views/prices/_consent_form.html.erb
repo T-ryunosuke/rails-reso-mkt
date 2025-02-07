@@ -3,6 +3,7 @@
     <p>よろしいですか？</p>
   </div>
   <%= form_with url: update_by_city_prices_path, method: :patch, local: true, data: { turbo: false } do |form| %>
+  <%= form.hidden_field :city_id, value: @city_id %>
   <div class="my-4">
     <% @prices.each do |id, attributes| %>
 

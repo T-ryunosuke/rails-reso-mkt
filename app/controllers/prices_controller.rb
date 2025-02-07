@@ -40,7 +40,8 @@ class PricesController < ApplicationController
   def add_price_field
     # セッションが切れていないか確認
     if session[:added_item_ids].nil?
-      redirect_to edit_by_city_prices_path, alert: "更新操作途中で一定時間経過したためセッションが切れました"
+      flash.alert = "更新操作途中で一定時間経過したためセッションが切れました"
+      redirect_to edit_by_city_prices_path
       return
     end
 
@@ -89,30 +90,49 @@ class PricesController < ApplicationController
       end
       return
     end
+    @city_id = params[:city_id]
     @prices = params[:prices]
   end
 
   # 更新の競合に関してはアプリの用途的に気にしない
   def update_by_city
+    if request.get?
+      redirect_to edit_by_city_prices_path
+      return
+    end
+
+    errors = []
+
     ActiveRecord::Base.transaction do
       params[:prices].each do |id, attributes|
-        price_percentage = attributes[:price_percentage]
-        trend = attributes[:trend]
-
         price = Price.find(id)
-        price.update(
-          # price_percentageをintegerに変換
-          price_percentage: price_percentage.to_i,
-          # trendをbooleanに変換
-          trend: trend == "true"
-        )
+        new_price_percentage = attributes[:price_percentage].to_i
+        new_trend = attributes[:trend] == "true"
+
+        if price.price_percentage != new_price_percentage || price.trend != new_trend
+          unless price.update(price_percentage: new_price_percentage, trend: new_trend)
+            errors << "#{price.item.name} - #{price.errors.full_messages.join(', ')}"
+          end
+        else
+          price.touch
+        end
       end
+
+      raise ActiveRecord::Rollback if errors.any?
     end
-    redirect_to root_path, notice: "更新が完了しました"
-  rescue ActiveRecord::RecordInvalid => e
-    flash.now[:alert] = "更新に失敗しました: #{e.message}"
-    redirect_to root_path, status: :unprocessable_entity
+
+    if errors.any?
+      flash.now[:danger] = "更新に失敗しました:<br>#{errors.join('<br>')}"
+      session[:city_id] = params[:city_id]
+      @city = City.find(session[:city_id])
+      session[:added_item_ids] = []
+      render :edit_by_city, status: :unprocessable_entity
+    else
+      flash[:success] = "ありがとうございます！更新が完了しました"
+      redirect_to root_path
+    end
   end
+
 
   private
 

@@ -1,5 +1,12 @@
 <% flash.each do |message_type, message| %>
-<div class="alert-<%= message_type %> animate-flash z-20 h-8 flex items-center pl-4 text-white bg-gray-400">
-  <%= message %>
+<!-- シンボルの可能性もあるため to_s で文字列化 -->
+<% bg_color =
+    case message_type.to_s
+    when "success" then "bg-green-600"
+    when "danger" then "bg-red-500"
+    else "bg-gray-400"
+  end %>
+<div class="flex items-center pl-4 py-1 text-white z-20 animate-flash <%= bg_color %>">
+  <%= simple_format(message) %>
 </div>
 <% end %>
