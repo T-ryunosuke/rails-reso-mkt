@@ -96,7 +96,7 @@ class PricesController < ApplicationController
 
   # 更新の競合に関してはアプリの用途的に気にしない
   def update_by_city
-    if request.get?
+    if request.get? || request.head?
       redirect_to edit_by_city_prices_path
       return
     end
