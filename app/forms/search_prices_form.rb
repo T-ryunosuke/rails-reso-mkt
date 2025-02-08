@@ -17,7 +17,7 @@ class SearchPricesForm
   validate :city_or_item_must_be_present
   validate :validate_sort_key
 
-  def search(page: 1)
+  def search
     if invalid?
       return Price.none
     end
@@ -45,8 +45,6 @@ class SearchPricesForm
     end
 
     scope = apply_sorting(scope)
-
-    scope.page(page).per(20)
   end
 
   private
