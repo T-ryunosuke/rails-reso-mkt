@@ -1,5 +1,3 @@
-<!-- scan_rubyの警告を出さないようにするための記述 -->
-<%# rubocop:disable DynamicRenderPath %>
 <div class="overflow-x-auto bg-gray-200 p-2 rounded mb-4">
 
   <!-- 項目 -->
@@ -26,7 +24,9 @@
     <% else %>
     <%= turbo_frame_tag "prices-page-#{@prices.current_page}" do %>
     <div>
-      <%= render @prices %>
+      <!-- brakemanの警告を解消するために変更 -->
+      <%= render partial: "prices/price", collection: @prices, as: :price %>
+
       <%= turbo_frame_tag "prices-page-#{@prices.next_page}", loading: :lazy, src: path_to_next_page(@prices) %>
     </div>
     <% end %>
@@ -35,4 +35,3 @@
   </div>
   <% end %>
 </div>
-<%# rubocop:enable DynamicRenderPath %>

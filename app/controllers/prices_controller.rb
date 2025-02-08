@@ -11,7 +11,7 @@ class PricesController < ApplicationController
     # 初期化。引数はなくてもOK。
     @search_form = SearchPricesForm.new(search_params)
     # @search_formを元にsearch_prices_formのメソッドで絞り込み
-    @prices = @search_form.search.page(params[:page]).per(20)
+    @prices = @search_form.search(page: params[:page])
     @cities = City.all
   end
 
