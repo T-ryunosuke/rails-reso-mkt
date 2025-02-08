@@ -1,31 +1,35 @@
-<div class="overflow-x-auto bg-gray-200 p-2 rounded">
-  <%= turbo_frame_tag "prices-list" do %>
+<div class="overflow-x-auto bg-gray-200 p-2 rounded mb-4">
 
-  <table class="min-w-full border-collapse border border-gray-200">
-    <thead class="bg-gray-50">
-      <tr>
-        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">都市名</th>
-        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">商品名</th>
-        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">動向</th>
-        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">価格割合</th>
-        <th class="pl-3 py-2 text-left text-gray-700 text-sm font-normal border border-gray-300">最終更新</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- app/views/prices/_price.html.erb -->
-      <%= render @prices %>
-    </tbody>
-  </table>
-
-  <% if @search_form.errors.present? %>
-  <div class="text-center py-2">
-    <%= render "shared/error_messages", object: @search_form %>
+  <!-- 項目 -->
+  <div class="grid grid-cols-12 bg-gray-50 p-2 border-b border-gray-300 text-sm font-normal text-gray-700">
+    <div class="col-span-3 border-gray-300">都市名</div>
+    <div class="col-span-3 pl-3 border-l border-gray-300">商品名</div>
+    <div class="col-span-2 pl-3 border-l border-gray-300">動向</div>
+    <div class="col-span-2 pl-3 border-l border-gray-300">価格率</div>
+    <div class="col-span-2 pl-3 border-l border-gray-300">最終更新</div>
   </div>
-  <% elsif @prices.empty? %>
-  <p class="py-2 mt-1 text-center text-xs md:text-sm text-gray-500">
-    該当の条件はありませんでした
-  </p>
-  <% end %>
 
+  <!-- priceのリスト -->
+  <%= turbo_frame_tag "prices-list" do %>
+    <div id="prices">
+      <%= turbo_frame_tag "prices-page-#{@prices.current_page}" do %>
+        <% if @search_form.errors.present? %>
+        <div class="text-center py-2">
+          <%= render "shared/error_messages", object: @search_form %>
+        </div>
+        <% elsif @prices.empty? %>
+        <p class="py-2 mt-1 text-center text-xs md:text-sm text-gray-500">
+          該当の条件はありませんでした
+        </p>
+        <% else %>
+          <%= turbo_frame_tag "prices-page-#{@prices.current_page}" do %>
+          <div>
+            <%= render @prices %>
+            <%= turbo_frame_tag "prices-page-#{@prices.next_page}", loading: :lazy, src: path_to_next_page(@prices) %>
+          </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>
