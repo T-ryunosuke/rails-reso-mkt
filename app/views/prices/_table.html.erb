@@ -11,25 +11,28 @@
 
   <!-- priceのリスト -->
   <%= turbo_frame_tag "prices-list" do %>
-    <div id="prices">
-      <%= turbo_frame_tag "prices-page-#{@prices.current_page}" do %>
-        <% if @search_form.errors.present? %>
-        <div class="text-center py-2">
-          <%= render "shared/error_messages", object: @search_form %>
-        </div>
-        <% elsif @prices.empty? %>
-        <p class="py-2 mt-1 text-center text-xs md:text-sm text-gray-500">
-          該当の条件はありませんでした
-        </p>
-        <% else %>
-          <%= turbo_frame_tag "prices-page-#{@prices.current_page}" do %>
-          <div>
-            <%= render @prices %>
-            <%= turbo_frame_tag "prices-page-#{@prices.next_page}", loading: :lazy, src: path_to_next_page(@prices) %>
-          </div>
-          <% end %>
-        <% end %>
-      <% end %>
+  <div id="prices">
+    <%= turbo_frame_tag "prices-page-#{@prices.current_page}" do %>
+    <% if @search_form.errors.present? %>
+    <div class="text-center py-2">
+      <%= render "shared/error_messages", object: @search_form %>
     </div>
+    <% elsif @prices.empty? %>
+    <p class="py-2 mt-1 text-center text-xs md:text-sm text-gray-500">
+      該当の条件はありませんでした
+    </p>
+    <% else %>
+    <%= turbo_frame_tag "prices-page-#{@prices.current_page}" do %>
+    <div>
+      <!-- scan_rubyの警告を出さないようにするための記述 -->
+      <%# rubocop:disable DynamicRenderPath %>
+      <%= render @prices %>
+      <%# rubocop:enable DynamicRenderPath %>
+      <%= turbo_frame_tag "prices-page-#{@prices.next_page}", loading: :lazy, src: path_to_next_page(@prices) %>
+    </div>
+    <% end %>
+    <% end %>
+    <% end %>
+  </div>
   <% end %>
 </div>
