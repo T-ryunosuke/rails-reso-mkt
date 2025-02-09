@@ -12,7 +12,6 @@
   <!-- priceのリスト -->
   <%= turbo_frame_tag "prices-list" do %>
   <div id="prices">
-    <%= turbo_frame_tag "prices-page-#{@prices.current_page}" do %>
     <% if @search_form.errors.present? %>
     <div class="text-center py-2">
       <%= render "shared/error_messages", object: @search_form %>
@@ -29,7 +28,6 @@
 
       <%= turbo_frame_tag "prices-page-#{@prices.next_page}", loading: :lazy, src: path_to_next_page(@prices) %>
     </div>
-    <% end %>
     <% end %>
     <% end %>
   </div>
