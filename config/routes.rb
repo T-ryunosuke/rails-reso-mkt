@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get "privacy_policy", to: "static_pages#privacy_policy"
+  get "terms_of_service", to: "static_pages#terms_of_service"
+  get "contact", to: "static_pages#contact"
+
   # resources :prices, only: [] do
   #   collection do
   #     get :select_city # 都市選択画面
