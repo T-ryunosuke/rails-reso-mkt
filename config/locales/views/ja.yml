@@ -4,7 +4,7 @@ ja:
       next: 次に進む
       confirm: 確定して更新
       update: 更新
-      import: CSVインポート
+      import: 取り込み
     label:
       city: 都市：
       item: 商品：

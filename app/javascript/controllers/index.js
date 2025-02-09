@@ -13,5 +13,5 @@ application.register("form", FormController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
-import ToggleController from "./toggle_controller"
-application.register("toggle", ToggleController)
+import FileInputController from "./file_input_controller"
+application.register("file-input", FileInputController)
