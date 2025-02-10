@@ -1,3 +1,5 @@
+<% content_for(:title, t(".title")) %>
+
 <h1 class="flex justify-center mx-20 mb-4 text-3xl border-b">Items</h1>
 <%= form_with url: import_items_path, local: true, multipart: true, data: { controller: "file-input" } do |form| %>
 <div class="flex items-center justify-center mb-2">
