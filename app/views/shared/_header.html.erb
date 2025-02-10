@@ -1,13 +1,22 @@
 <div class="flex items-center justify-between w-full h-16 text-white bg-purple-950">
 
-  <div class="pl-3">
-    <%= link_to root_path do %>
+  <div class="flex items-center pl-3 text-lg">
+    <%= link_to root_path, class: "mr-8" do %>
     Resonance-MKT
+    <% end %>
+    <%= link_to tutorial_path do %>
+    <div class="flex items-center justify-center w-4 h-4 border-2 rounded-full cursor-pointer group relative">
+      <i class="fa-solid fa-exclamation text-xs"></i>
+      <!-- ツールチップ -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 top-full mt-2 w-max px-2 py-1 text-xs text-black bg-white border rounded shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        ヘルプ
+      </div>
+    </div>
     <% end %>
   </div>
 
   <div class="pr-3">
-    <%= link_to t("header.links.city_select"), select_city_prices_path, class: "cursor-pointer", data: { turbo_frame: "modal" } %>
+    <%= link_to t("header.links.city_select"), select_city_prices_path, class: "cursor-pointer motion-safe:animate-pulse", data: { turbo_frame: "modal" } %>
   </div>
 
 </div>

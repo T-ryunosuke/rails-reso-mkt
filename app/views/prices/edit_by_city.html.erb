@@ -1,6 +1,6 @@
-<h1 class="text-center text-3xl py-4">対象都市：<%= @city.name %></h1>
+<h1 class="text-center mx-8 md:mx-20 mb-12 pt-4 pb-2 text-2xl sm:text-3xl font-semibold border-b-2 border-violet-800">対象都市：<%= @city.name %></h1>
 
-<div class="text-center my-6">
+<div class="text-center mt-6">
   <%= form_with url: add_price_field_prices_path, method: :post, data: { controller: "add-price", action: "turbo:submit-end->add-price#clearField" } do |form| %>
   <%= form.hidden_field :city_id, value: @city.id %>
   <div class="flex justify-center">
@@ -20,10 +20,11 @@
     <!-- turbo-stream -->
   </div>
   <div class="flex justify-center text-white text-sm text-thin">
-    <%= button_tag type: "submit", class: "flex items-center justify-center ml-1 mt-4 px-2 py-1 bg-purple-700 rounded cursor-pointer hover:bg-gray-500 transition duration-300" do %>
+    <%= button_tag type: "submit", class: "flex items-center justify-center mt-14 px-2 py-1 bg-purple-700 rounded cursor-pointer hover:bg-gray-500 transition duration-300" do %>
     <i class="fa-solid fa-rotate-right pr-1"></i>
     <span><%= t("helpers.submit.update") %></span>
     <% end %>
   </div>
   <% end %>
+  <p class="mt-10 text-center text-xs text-red-300">※「価格割合」と「動向」だけ 更新可能 です。<br />都市や商品の追加は管理者が行うため、お問い合わせいただければ対応いたしますm(__)m</p>
 </div>
