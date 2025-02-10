@@ -1,3 +1,4 @@
+// プッシュ通知やオフラインキャッシュを使う場合に必要なファイル
 // Add a service worker for processing Web Push notifications:
 //
 // self.addEventListener("push", async (event) => {
