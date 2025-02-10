@@ -10,6 +10,26 @@ ja:
       item: 商品：
       trend: 動向：
       sort: ソート：
+  cities:
+    index:
+      title: 都市取り込み
+  items:
+    index:
+      title: 商品取り込み
+  prices:
+    index:
+      title: トップ
+    edit_by_city:
+      title: 更新
+  static_pages:
+    privacy_policy:
+      title: プライバシーポリシー
+    terms_of_service:
+      title: 利用規約
+    contact:
+      title: お問い合わせ
+    tutorial:
+      title: アプリ説明
   header:
     links:
       root: レゾナンス-MKT

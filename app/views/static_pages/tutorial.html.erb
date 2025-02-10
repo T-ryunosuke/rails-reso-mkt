@@ -1,3 +1,5 @@
+<% content_for(:title, t(".title")) %>
+
 <div class="container mx-auto px-4 py-8">
   <!-- タイトル -->
   <h1 class="text-center mx-8 md:mx-20 mb-12 pb-2 text-2xl sm:text-3xl border-b-2 border-violet-800">
@@ -5,12 +7,14 @@
   </h1>
 
   <!-- 本文 -->
-  <section class="mb-8 text-sm sm:text-base leading-relaxed text-gray-700">
-    <p>本アプリはレゾナンスにおける都市ごとの商品情報を検索/更新できるアプリです。</p>
-    <p class="my-4">しかし、ユーザーに商品の情報を更新してもらえないと成立しない、とてもアナログなアプリです。<br />（ゲームから自動で情報を取得するなどの仕様ではありませんm(__)m）</p>
+  <section class="mx-8 md:mx-20 mb-8 text-sm sm:text-base leading-relaxed text-gray-700">
+    <div class="text-center">
+      <p>本アプリはレゾナンスにおける都市ごとの商品情報を検索/更新できるアプリです。</p>
+      <p class="my-4">しかし、ユーザーに商品の情報を更新してもらえないと成立しない、とてもアナログなアプリです。<br />（ゲームから自動で情報を取得するなどの仕様ではありませんm(__)m）</p>
+    </div>
 
-    <h2 class="mt-14 text-xl sm:text-2xl font-semibold">使い方（仕様）</h2>
-    <p class="mt-4">使い方はシンプルですがざっくりと解説します。</p>
+    <h2 class="mt-14 text-center text-xl sm:text-2xl font-semibold">使い方（仕様）</h2>
+    <p class="mt-4 text-center">使い方はシンプルですがざっくりと解説します。</p>
 
     <h3 class="mt-8 mb-2 text-base sm:text-xl font-semibold">「検索」</h3>
     <p>検索するには 都市名・商品名 の どちらか または 両方 を指定する必要があります。<br />(入力・選択していただくと自動で検索します)</p>
