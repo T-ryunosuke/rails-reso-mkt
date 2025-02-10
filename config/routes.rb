@@ -29,18 +29,7 @@ Rails.application.routes.draw do
   get "terms_of_service", to: "static_pages#terms_of_service"
   get "contact", to: "static_pages#contact"
 
-  # resources :prices, only: [] do
-  #   collection do
-  #     get :select_city # 都市選択画面
-  #     get :edit_by_city # 選択した都市の編集画面
-  #   end
-  #   patch :update_multiple, on: :collection # 一括更新用
-  # end
-
-  # ヘルスチェック用
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/*
+  # 動的なPWAを使うためのルーティング from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 end
