@@ -1,51 +1,55 @@
 <div class="mb-8 py-4 justify-center border rounded-md shadow-lg border-zinc-600">
-  <h2 class="flex justify-center mb-4 text-3xl font-thin">検索</h2>
-  <div class="flex justify-center mx-6">
+  <h2 class="flex justify-center mb-2 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-medium">検索</h2>
+  <div class="flex justify-center mx-6 text-sm sm:text-base">
     <%= form_with model: @search_form, html: { data: { turbo_frame: "prices-list", controller: "form", action: "input->form#submit" } }, method: :get, url: prices_path do |form| %>
     <div class="flex mx-2">
-      <div class="mr-4">
-        <div>
+      <div class="mr-2 sm:mr-4 md:mr-10 lg:mr-20">
+        <div class="sm:flex">
           <%= form.label :city_id, t("helpers.label.city") %>
-          <%= form.collection_select :city_id, @cities, :id, :name, { include_blank: "未選択" }, { class: "border rounded-sm p-0.5 w-48" } %>
+          <%= form.collection_select :city_id, @cities, :id, :name, { include_blank: "未選択" }, { class: "w-40 sm:w-44 p-0.5 border rounded-sm text-xs sm:text-sm" } %>
         </div>
 
-        <div class="mt-1.5 mb-1">
+        <div class="sm:flex mt-1.5 mb-1">
           <span>価格割合：</span>
-          <%= form.number_field :min_price, class: "w-12 pl-1 border border-radius placeholder-gray-400 placeholder-opacity-50", max: 200, min: 30, placeholder: "80" %>
-          〜
-          <%= form.number_field :max_price, class: "w-12 pl-1 border border-radius placeholder-gray-400 placeholder-opacity-50", max: 200, min: 30, placeholder: "110" %>
-          %
+          <div class="pl-4 sm:pl-0 text-sm sm:text-base">
+            <%= form.number_field :min_price, class: "w-12 pl-1 border border-radius placeholder-gray-400 placeholder-opacity-50", max: 150, min: 80, placeholder: "80" %>
+            〜
+            <%= form.number_field :max_price, class: "w-12 pl-1 border border-radius placeholder-gray-400 placeholder-opacity-50", max: 150, min: 80, placeholder: "110" %>
+            %
+          </div>
         </div>
 
-        <div class="flex">
+        <div class="flex mt-1.5">
           <%= form.label :sort_key, t("helpers.label.sort") %>
-          <%= form.select :sort_key, options_for_select([["最新更新順", "newest"], ["価格割合順", "price_percentage"], ["五十音順", "item_name"]], @search_form.sort_key), class: "border rounded-sm p-0.5 w-48" %>
+          <%= form.select :sort_key, options_for_select([["最新更新順", "newest"], ["価格割合順", "price_percentage"], ["五十音順", "item_name"]], @search_form.sort_key), {}, { class: "pr-1 border-b text-xs sm:text-sm" } %>
         </div>
       </div>
 
       <div>
         <div class="mb-1.5">
           <%= form.label :item_name, t("helpers.label.item") %>
-          <%= form.text_field :item_name, placeholder: "商品を入力", class: "w-44 pl-1 border rounded-sm placeholder-gray-400 placeholder-opacity-50" %>
+          <%= form.text_field :item_name, placeholder: "商品を入力", class: "w-40 sm:w-44 pl-1 border rounded-sm placeholder-gray-400 placeholder-opacity-50" %>
         </div>
 
-        <div class="flex space-x-2">
+        <div class="sm:flex mt-1.5">
           <span>動向：</span>
+          <div class="flex space-x-2 pl-4 sm:pl-0">
 
-          <label for="trend_all" class="flex space-x-0.5 cursor-pointer items-center">
-            <%= form.radio_button :trend, "all", id: "trend_all" %>
-            <span>All</span>
-          </label>
+            <label for="trend_all" class="flex space-x-0.5 cursor-pointer items-center">
+              <%= form.radio_button :trend, "all", id: "trend_all" %>
+              <span>All</span>
+            </label>
 
-          <label for="trend_true" class="flex space-x-0.5 cursor-pointer items-center">
-            <%= form.radio_button :trend, "true", id: "trend_true" %>
-            <i class="fa-solid fa-arrow-trend-up text-green-500"></i>
-          </label>
+            <label for="trend_true" class="flex space-x-0.5 cursor-pointer items-center">
+              <%= form.radio_button :trend, "true", id: "trend_true" %>
+              <i class="fa-solid fa-arrow-trend-up text-green-500"></i>
+            </label>
 
-          <label for="trend_false" class="flex space-x-0.5 cursor-pointer items-center">
-            <%= form.radio_button :trend, "false", id: "trend_false" %>
-            <i class="fa-solid fa-arrow-trend-down text-red-500"></i>
-          </label>
+            <label for="trend_false" class="flex space-x-0.5 cursor-pointer items-center">
+              <%= form.radio_button :trend, "false", id: "trend_false" %>
+              <i class="fa-solid fa-arrow-trend-down text-red-500"></i>
+            </label>
+          </div>
 
         </div>
       </div>
