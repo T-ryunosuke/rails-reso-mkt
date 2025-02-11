@@ -5,11 +5,13 @@ ja:
       confirm: 確定して更新
       update: 更新
       import: 取り込み
+      login: ログイン
     label:
       city: 都市：
       item: 商品：
       trend: 動向：
       sort: ソート：
+      password: パスワード
   cities:
     index:
       title: 都市取り込み

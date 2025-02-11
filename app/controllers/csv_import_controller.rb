@@ -1,4 +1,5 @@
 class CsvImportController < ApplicationController
+  before_action :authenticate, only: [ :index ]
   require "csv"
 
   def import
@@ -41,5 +42,13 @@ class CsvImportController < ApplicationController
   def set_flash_and_render(type, message)
     flash.now[type] = message
     render :index, status: :unprocessable_entity
+  end
+
+  # フォーム認証
+  def authenticate
+    unless session[:authenticated]
+      session[:return_to] = request.fullpath
+      redirect_to login_path, alert: "ログインが必要です"
+    end
   end
 end
