@@ -29,5 +29,8 @@ module Myapp
 
     # デフォルトの言語を日本語（:ja）に設定
     config.i18n.default_locale = :ja
+
+    # HTTPヘッダーの設定
+    config.encoding = "utf-8"
   end
 end

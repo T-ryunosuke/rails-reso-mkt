@@ -1,9 +1,7 @@
 <div class="flex items-center justify-between w-full h-16 text-white bg-purple-950">
 
   <div class="flex items-center pl-3 text-lg">
-    <%= link_to root_path, class: "mr-8" do %>
-    Resonance-MKT
-    <% end %>
+    <%= link_to t("header.links.root"), root_path, class: "mr-8" %>
     <%= link_to tutorial_path do %>
     <div class="flex items-center justify-center w-4 h-4 border-2 rounded-full cursor-pointer group relative">
       <i class="fa-solid fa-exclamation text-xs"></i>
