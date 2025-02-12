@@ -12,17 +12,19 @@ ja:
       trend: 動向：
       sort: ソート：
       password: パスワード
+  sessions:
+    new: 管理者ログインページ
   cities:
     index:
-      title: 都市取り込み
+      title: 管理者ページ(都市取り込み)
   items:
     index:
-      title: 商品取り込み
+      title: 管理者ページ(商品取り込み)
   prices:
     index:
-      title: トップ
+      title: トップページ
     edit_by_city:
-      title: 更新
+      title: 更新ページ
   static_pages:
     privacy_policy:
       title: プライバシーポリシー
@@ -34,7 +36,7 @@ ja:
       title: アプリ説明
   header:
     links:
-      root: レゾナンス-MKT
+      root: Resonance-MKT
       city_select: 更新する
   footer:
     links:
