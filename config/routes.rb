@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  resources :prices, only: [ :index ] do
+  resources :prices do
+    resources :interests, only: [ :create ]
     collection do
       get :search
       get :select_city

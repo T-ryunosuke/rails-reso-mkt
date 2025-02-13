@@ -1,6 +1,7 @@
 class Price < ApplicationRecord
   belongs_to :city
   belongs_to :item
+  has_many :interests, dependent: :destroy
 
   validates :price_percentage, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 80, less_than_or_equal_to: 150 }
   validates :trend, inclusion: { in: [ true, false ] }
