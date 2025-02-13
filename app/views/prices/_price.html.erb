@@ -4,8 +4,9 @@
       <%= price.city.name %>
     </p>
   </div>
-  <div class="col-span-3 h-full content-center">
-    <p class="px-2 text-sm text-gray-700">
+  <div class="flex items-center py-1 pl-1.5 pr-2 col-span-3 h-full content-center">
+    <%= render "interests/interest", price: price %>
+    <p class="text-sm text-gray-700">
       <%= price.item.name %>
     </p>
   </div>

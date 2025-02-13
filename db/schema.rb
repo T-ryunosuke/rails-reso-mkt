@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_08_150131) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_13_023308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cities", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.bigint "price_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["price_id"], name: "index_interests_on_price_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -35,6 +42,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_08_150131) do
     t.index ["updated_at", "price_percentage"], name: "index_prices_on_updated_at_and_price_percentage", order: :desc
   end
 
+  add_foreign_key "interests", "prices"
   add_foreign_key "prices", "cities"
   add_foreign_key "prices", "items"
 end
