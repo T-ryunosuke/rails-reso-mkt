@@ -1,7 +1,7 @@
 <turbo-frame id="interested_<%= price.id %>">
   <% if price.interests.exists? %>
   <p class="pb-0.5 pr-1">
-    <i class="fa-solid fa-flag text-xs text-violet-800 cursor-pointer"></i>
+    <i class="fa-solid fa-flag text-xs text-violet-800"></i>
   </p>
   <% else %>
   <%= button_to price_interests_path(price), method: :post, data: { disable_with: '<i class="fa-regular fa-flag pb-2 pr-1 text-xs"></i>' } do %>
