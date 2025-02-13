@@ -109,6 +109,11 @@ class PricesController < ApplicationController
         new_price_percentage = attributes[:price_percentage].to_i
         new_trend = attributes[:trend] == "true"
 
+        # 関連するInterestがあるなら削除
+        if price.interests.present?
+          price.interests.destroy_all
+        end
+
         if price.price_percentage != new_price_percentage || price.trend != new_trend
           unless price.update(price_percentage: new_price_percentage, trend: new_trend)
             errors << "#{price.item.name} - #{price.errors.full_messages.join(', ')}"
