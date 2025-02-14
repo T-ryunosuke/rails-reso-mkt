@@ -6,7 +6,7 @@
       <div class="mr-2 sm:mr-4 md:mr-10 lg:mr-20">
         <div class="sm:flex">
           <%= form.label :city_id, t("helpers.label.city") %>
-          <%= form.collection_select :city_id, @cities, :id, :name, { include_blank: "未選択" }, { class: "w-40 sm:w-44 p-0.5 border rounded-sm text-xs sm:text-sm" } %>
+          <%= form.collection_select :city_id, @cities, :id, :name, { include_blank: "未選択" }, { class: "w-40 sm:w-44 p-0.5 border rounded-sm text-xs sm:text-sm cursor-pointer" } %>
         </div>
 
         <div class="sm:flex mt-1.5 mb-1">
@@ -21,7 +21,7 @@
 
         <div class="flex mt-1.5">
           <%= form.label :sort_key, t("helpers.label.sort") %>
-          <%= form.select :sort_key, options_for_select([["最新更新順", "newest"], ["価格割合順", "price_percentage"], ["五十音順", "item_name"]], @search_form.sort_key), {}, { class: "pr-1 border-b text-xs sm:text-sm" } %>
+          <%= form.select :sort_key, options_for_select([["最新更新順", "newest"], ["価格割合順", "price_percentage"], ["五十音順", "item_name"]], @search_form.sort_key), {}, { class: "pr-1 border-b text-xs sm:text-sm cursor-pointer" } %>
         </div>
       </div>
 

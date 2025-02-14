@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  resources :prices do
+  resources :prices, only: [ :index, :new, :create ] do
     resources :interests, only: [ :create ]
     collection do
       get :search
@@ -27,7 +27,6 @@ Rails.application.routes.draw do
   # 認証用のルート
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
 
   get "tutorial", to: "static_pages#tutorial"
   get "privacy_policy", to: "static_pages#privacy_policy"

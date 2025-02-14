@@ -1,0 +1,14 @@
+<% set_meta_tags(
+    title: t(".title"),
+    description: "このページはパスワードで保護されており、認証が必要です。",
+    # 検索エンジンにインデックスされないように設定
+    robots: "noindex, nofollow"
+) %>
+
+<h1 class="text-center mx-8 md:mx-44 mb-8 py-4 text-2xl sm:text-3xl border-b-2 border-violet-800">Prices</h2>
+
+  <%= form_with url: prices_path, method: :post do %>
+  <div class="flex justify-center mb-6">
+    <%= submit_tag t("helpers.submit.create"), class: "w-1/5 md:w-1/6 rounded-full border border-slate-600 bg-slate-700 text-white font-normal cursor-pointer hover:text-black hover:bg-white hover:shadow-md transition duration-200" %>
+  </div>
+  <% end %>

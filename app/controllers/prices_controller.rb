@@ -3,6 +3,7 @@ class PricesController < ApplicationController
   include Frameable
   # 本番環境で指定したアクションへのリクエストがTurboFrameでない場合は、トップページにリダイレクトされる。
   before_action :ensure_turbo_frame_response, only: %w[select_city confirm], if: :production_environment?
+  before_action :authenticate, only: [ :new ]
 
   # ActionController::InvalidAuthenticityTokenのエラー回避
   protect_from_forgery
@@ -13,6 +14,41 @@ class PricesController < ApplicationController
     # @search_formを元にsearch_prices_formのメソッドで絞り込み
     @prices = @search_form.search(page: params[:page])
     @cities = City.all
+  end
+
+  def new
+  end
+
+  # bulk insertによるcreate
+  def create
+    cities = City.all
+    items = Item.all
+    timestamp = Time.current
+
+    new_prices = []
+
+    cities.each do |city|
+      items.each do |item|
+        next if Price.exists?(city_id: city.id, item_id: item.id)
+
+        new_prices << {
+          city_id: city.id,
+          item_id: item.id,
+          price_percentage: rand(90..110),
+          trend: [ true, false ].sample,
+          created_at: timestamp,
+          updated_at: timestamp
+        }
+      end
+    end
+
+    if new_prices.present?
+      # bulk insert
+      Price.insert_all(new_prices)
+      redirect_to prices_path, success: "新しい価格データを追加しました。"
+    else
+      redirect_to new_price_path, alert: "追加できる価格データがありません。"
+    end
   end
 
   # どの都市の商品の情報を変更するか選択する
@@ -32,7 +68,7 @@ class PricesController < ApplicationController
       @city = City.find(session[:city_id])
       session[:added_item_ids] = []
     else
-      redirect_to root_path, alert: "更新操作途中で一定時間経過したためセッションが切れました"
+      redirect_to root_path, status: :see_other, alert: "更新操作途中で一定時間経過したためセッションが切れました"
     end
   end
 
