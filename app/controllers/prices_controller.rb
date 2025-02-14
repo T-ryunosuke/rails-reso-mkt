@@ -77,7 +77,7 @@ class PricesController < ApplicationController
     # セッションが切れていないか確認
     if session[:added_item_ids].nil?
       flash.alert = "更新途中で一定時間(5分)経過したためセッションが切れました"
-      redirect_to edit_by_city_prices_path
+      redirect_to edit_by_city_prices_path, status: :see_other
       return
     end
 

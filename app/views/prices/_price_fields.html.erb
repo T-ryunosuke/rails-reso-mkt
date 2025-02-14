@@ -9,7 +9,7 @@
   <div class="flex">
     <%= label_tag "prices[#{price.id}][trend]", "動向" %>
     <%= select_tag "prices[#{price.id}][trend]",
-      options_for_select([["↗︎", "true"], ["↘", "false"]], price.trend),
+      options_for_select([["↗", "true"], ["↘", "false"]], price.trend),
       class: "ml-1 px-1 border rounded"
     %>
   </div>
