@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # フォーム認証
+  def authenticate
+    unless session[:authenticated]
+      session[:return_to] = request.fullpath
+      redirect_to login_path, alert: "ログインが必要です"
+    end
+  end
+
   def should_cleanup?
     # 最後のクリーンアップから6時間以上経過している場合のみ実行
     last_cleanup = Rails.cache.read("last_cleanup_time")

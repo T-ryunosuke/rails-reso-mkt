@@ -1,11 +1,12 @@
 ja:
   helpers:
     submit:
-      next: 次に進む
-      confirm: 確定して更新
-      update: 更新
-      import: 取り込み
       login: ログイン
+      import: 取り込み
+      create: 新規追加
+      next: 次に進む
+      update: 更新
+      confirm: 確定して更新
     label:
       city: 都市：
       item: 商品：
@@ -25,6 +26,8 @@ ja:
       title: トップページ
     edit_by_city:
       title: 更新ページ
+    new:
+      title: 管理者ページ(価格情報追加)
   static_pages:
     privacy_policy:
       title: プライバシーポリシー
