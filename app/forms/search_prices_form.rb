@@ -9,6 +9,7 @@ class SearchPricesForm
   attribute :max_price, :integer
   attribute :trend, :string, default: "all"
   attribute :sort_key, :string, default: "newest"
+  attribute :interested, :boolean, default: nil
 
   # バリデーション設定
   # validate :city_or_item_must_be_present
@@ -39,6 +40,11 @@ class SearchPricesForm
       scope = scope.where("price_percentage >= ?", min_price)
     elsif max_price.present?
       scope = scope.where("price_percentage <= ?", max_price)
+    end
+
+    # interestの検索条件
+    if interested.present?
+      scope = scope.joins(:interests).where(interests: { id: interested ? Interest.select(:id) : nil })
     end
 
     scope = apply_sorting(scope)
