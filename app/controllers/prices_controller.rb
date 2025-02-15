@@ -68,7 +68,7 @@ class PricesController < ApplicationController
       @city = City.find(session[:city_id])
       session[:added_item_ids] = []
     else
-      redirect_to root_path, status: :see_other, alert: "更新操作途中で一定時間経過したためセッションが切れました"
+      redirect_to root_path, status: :found, alert: "更新操作途中で一定時間経過したためセッションが切れました"
     end
   end
 
@@ -77,7 +77,7 @@ class PricesController < ApplicationController
     # セッションが切れていないか確認
     if session[:added_item_ids].nil?
       flash.alert = "更新途中で一定時間(5分)経過したためセッションが切れました"
-      redirect_to edit_by_city_prices_path, status: :see_other
+      redirect_to edit_by_city_prices_path, status: :found
       return
     end
 

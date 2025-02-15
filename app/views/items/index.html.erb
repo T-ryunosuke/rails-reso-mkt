@@ -5,7 +5,7 @@
     robots: "noindex, nofollow"
 ) %>
 
-<h1 class="text-center mx-8 md:mx-44 mb-8 py-4 text-2xl sm:text-3xl border-b-2 border-violet-800">Items</h1>
+<h1 class="text-center mx-8 md:mx-32 mb-8 py-4 text-2xl sm:text-3xl border-b-2 border-violet-800">Items</h1>
 
 <%= form_with url: import_items_path, local: true, multipart: true, data: { controller: "file-input" } do |form| %>
 <div class="flex items-center justify-center mb-2">
@@ -22,14 +22,6 @@
 </div>
 <% end %>
 
-<div class="flex justify-center w-full mb-4">
-  <div class="border">
-    <% if @items.present? %>
-    <% @items.each do |item| %>
-    <p class="flex border-b p-1 justify-center"><%= item.name %></p>
-    <% end %>
-    <% else %>
-    <p colspan="1">データがありません</p>
-    <% end %>
-  </div>
+<div id="items" class="mb-8">
+  <%= render @items %>
 </div>
