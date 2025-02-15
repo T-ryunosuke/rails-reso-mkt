@@ -10,11 +10,8 @@ class SearchPricesForm
   attribute :trend, :string, default: "all"
   attribute :sort_key, :string, default: "newest"
 
-  # 「->」はアロー演算子（lambda）
-  # validates :city_id, presence: true, if: -> { item_name.blank? }
-  # validates :item_name, presence: true, if: -> { city_id.blank? }
-
-  validate :city_or_item_must_be_present
+  # バリデーション設定
+  # validate :city_or_item_must_be_present
   validate :validate_sort_key
 
   def search(page: 1)
@@ -52,11 +49,11 @@ class SearchPricesForm
   private
 
   # カスタムバリデーション
-  def city_or_item_must_be_present
-    if city_id.blank? && item_name.blank?
-      errors.add(:base, :city_or_item_required)
-    end
-  end
+  # def city_or_item_must_be_present
+  #   if city_id.blank? && item_name.blank?
+  #     errors.add(:base, :city_or_item_required)
+  #   end
+  # end
 
   def validate_sort_key
     unless %w[newest price_percentage item_name].include?(sort_key)
@@ -69,11 +66,11 @@ class SearchPricesForm
     scope = scope.joins(:item)
     case sort_key
     when "newest"
-      scope.order(updated_at: :desc, "items.name": :desc)
+      scope.order(updated_at: :desc, "items.name": :asc)
     when "price_percentage"
-      scope.order(price_percentage: :desc, "items.name": :desc)
+      scope.order(price_percentage: :desc, "items.name": :asc)
     when "item_name"
-      scope.order("items.name": :desc)
+      scope.order("items.name": :asc)
     end
   end
 end

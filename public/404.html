@@ -3,6 +3,8 @@
 <head>
   <title>404 - ページが見つかりません</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- 5秒後に/(トップページ)へリダイレクト -->
+  <meta http-equiv="refresh" content="5;url=/">
   <style>
   .rails-default-error-page {
     background-color: #EFEFEF;
@@ -57,8 +59,8 @@
 <body class="rails-default-error-page">
   <div class="dialog">
     <div>
-      <h1>お探しのページは存在しません。</h1>
-      <p>アドレスを誤って入力したか、ページが移動した可能性があります。</p>
+      <h1>お探しのページにアクセスできませんでした。</h1>
+      <p>5秒後にトップページへと遷移させます。</p>
     </div>
   </div>
 </body>
