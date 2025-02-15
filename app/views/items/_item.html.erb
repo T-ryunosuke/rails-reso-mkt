@@ -1,0 +1,17 @@
+<%= turbo_frame_tag item do %>
+<% if item.present? %>
+<div class="flex justify-center">
+  <div class="w-4/5 md:w-2/3 border-b">
+    <div class="flex justify-between items-center pl-6 sm:pl-8 pr-6 sm:pr-10 py-1">
+      <span class="text-xs sm:text-sm"><%= item.name %></span>
+      <%= link_to t("items.links.destroy"), item,
+          data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+          class: "py-0.5 px-1.5 text-blue-400 text-xs sm:text-sm font-thin bg-transparent border border-blue-400 rounded cursor-pointer hover:bg-gray-200 hover:text-gray-400 hover:border-transparent"
+        %>
+    </div>
+  </div>
+</div>
+<% else %>
+<p class="text-gray-500 text-center">データがありません</p>
+<% end %>
+<% end %>

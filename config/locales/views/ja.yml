@@ -18,9 +18,13 @@ ja:
   cities:
     index:
       title: 管理者ページ(都市取り込み)
+    links:
+      destroy: 削除
   items:
     index:
       title: 管理者ページ(商品取り込み)
+    links:
+      destroy: 削除
   prices:
     index:
       title: トップページ

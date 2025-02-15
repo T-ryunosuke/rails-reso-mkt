@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   # chromeの検証ツールでデバイスモード使用中に画面遷移をすると406エラーページが表示されるのは以下の"allow_browser versions: :modern"が原因
-  allow_browser versions: :modern
   add_flash_types :success, :danger
   before_action :cleanup_old_interests, if: :should_cleanup?
 
