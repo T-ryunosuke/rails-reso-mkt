@@ -179,10 +179,6 @@ class PricesController < ApplicationController
 
   # :search_prices_formはasで指定しない限り自動的にオブジェクトのクラス名となる
   def search_params
-    params.fetch(:search_prices_form, {}).permit(:city_id, :item_name, :min_price, :max_price, :trend, :sort_key)
+    params.fetch(:search_prices_form, {}).permit(:city_id, :item_name, :min_price, :max_price, :trend, :interested, :sort_key)
   end
-
-  # def price_params
-  #   params.require(:price).permit(:price_percentage, :trend)
-  # end
 end

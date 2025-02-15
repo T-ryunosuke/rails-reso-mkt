@@ -15,3 +15,6 @@ application.register("modal", ModalController)
 
 import FileInputController from "./file_input_controller"
 application.register("file-input", FileInputController)
+
+import ToggleController from "./toggle_controller"
+application.register("toggle", ToggleController)
