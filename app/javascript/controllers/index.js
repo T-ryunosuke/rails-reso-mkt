@@ -7,14 +7,17 @@ import { application } from "./application"
 import AddPriceController from "./add_price_controller"
 application.register("add-price", AddPriceController)
 
+import AutocompleteController from "./autocomplete_controller"
+application.register("autocomplete", AutocompleteController)
+
+import FileInputController from "./file_input_controller"
+application.register("file-input", FileInputController)
+
 import FormController from "./form_controller"
 application.register("form", FormController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
-
-import FileInputController from "./file_input_controller"
-application.register("file-input", FileInputController)
 
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)

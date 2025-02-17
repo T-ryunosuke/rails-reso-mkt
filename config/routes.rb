@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   resources :items, only: [ :index, :destroy ] do
     collection { post :import }
-    member { get :confirm_destroy }
   end
 
   resources :cities, only: [ :index, :destroy ] do
