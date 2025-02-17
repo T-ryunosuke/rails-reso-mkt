@@ -7,9 +7,6 @@ import { application } from "./application"
 import AddPriceController from "./add_price_controller"
 application.register("add-price", AddPriceController)
 
-import AutocompleteController from "./autocomplete_controller"
-application.register("autocomplete", AutocompleteController)
-
 import FileInputController from "./file_input_controller"
 application.register("file-input", FileInputController)
 
