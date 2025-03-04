@@ -1,0 +1,23 @@
+<div class="w-full">
+  <div class="text-center text-sm sm:text-base">
+    <p><span class="px-1 text-violet-950"><%= price.city.name %></span>の<span class="px-1 border-b border-violet-600 text-violet-900"><%= price.item.name %></span>を以下の内容で更新します。</p>
+    <p>よろしいですか？</p>
+  </div>
+  <%= form_with model: price, url: price_path(price), method: :patch do |form| %>
+  <div class="flex justify-center mt-4 mb-6 text-xs sm:text-base space-x-6 text-black">
+    <div class="flex">
+      <%= form.label :trend, "動向：" %>
+      <%= form.select :trend, [["↗", true], ["↘", false]], { include_blank: false }, class: "ml-1 px-1 border rounded" %>
+    </div>
+    <div class="flex">
+      <%= form.label :price_percentage, "価格率：" %>
+      <%= form.number_field :price_percentage, class: "w-14 mx-1 pl-1 border rounded", required: true, min: 80, max: 150 %>%
+    </div>
+  </div>
+
+  <div class="flex justify-center space-x-10 text-xs sm:text-base text-white">
+    <%= button_tag "キャンセル", type: :button, data: { action: "modal#hide" }, class: "px-2 py-1 bg-gray-500 rounded hover:bg-gray-600 transition duration-300" %>
+    <%= form.submit "更新確定", class: "px-2 py-1 bg-purple-700 rounded cursor-pointer hover:bg-violet-800 transition duration-300" %>
+  </div>
+  <% end %>
+</div>

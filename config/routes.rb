@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  resources :prices, only: [ :index, :new, :create ] do
+  resources :prices, only: [ :index, :new, :create, :update ] do
     resources :interests, only: [ :create ]
     collection do
       get :search
@@ -21,6 +21,10 @@ Rails.application.routes.draw do
       post :confirm
       get :update_by_city
       patch :update_by_city
+    end
+    # 特定のpriceに対する処理はmember
+    member do
+      get :single_edit
     end
   end
 

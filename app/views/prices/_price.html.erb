@@ -11,16 +11,18 @@
     </p>
   </div>
   <div class="col-span-2 h-full content-center text-center">
-    <% if price.trend %>
-    <p class="px-2 text-sm"><i class="fa-solid fa-arrow-trend-up text-green-500"></i></p>
-    <% else %>
-    <p class="px-2 text-sm"><i class="fa-solid fa-arrow-trend-down text-red-500"></i></p>
+    <%= link_to single_edit_price_path(price), data: { turbo_frame: "modal" }, class: "px-2 text-sm" do %>
+      <% if price.trend %>
+        <i class="fa-solid fa-arrow-trend-up text-green-500"></i>
+      <% else %>
+        <i class="fa-solid fa-arrow-trend-down text-red-500"></i>
+      <% end %>
     <% end %>
   </div>
   <div class="col-span-2 h-full content-center text-center">
-    <p class="px-2 text-sm text-gray-700">
-      <%= price.price_percentage %>%
-    </p>
+    <%= link_to single_edit_price_path(price), data: { turbo_frame: "modal" }, class: "px-2 text-sm text-gray-700" do %>
+    <%= price.price_percentage %>%
+    <% end %>
   </div>
   <div class="col-span-2 h-full content-center">
     <p class="pl-2 text-xs sm:text-sm text-gray-500">

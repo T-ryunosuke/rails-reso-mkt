@@ -1,4 +1,4 @@
-<div class="mb-8 py-4 justify-center border rounded-md shadow-lg border-zinc-600">
+<div class="py-4 justify-center border rounded-md shadow-lg border-zinc-600">
   <h2 class="flex justify-center mb-2 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-medium">検索</h2>
   <div class="flex justify-center mx-6 text-sm sm:text-base">
     <%= form_with model: @search_form, html: { data: { turbo_frame: "prices-list", controller: "form", action: "input->form#submit" } }, method: :get, url: prices_path do |form| %>

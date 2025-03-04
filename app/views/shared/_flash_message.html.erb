@@ -2,11 +2,11 @@
 <!-- シンボルの可能性もあるため to_s で文字列化 -->
 <% bg_color =
     case message_type.to_s
-    when "success" then "bg-green-600"
-    when "danger" then "bg-red-500"
+    when "success" then "bg-emerald-700"
+    when "danger" then "bg-rose-900"
     else "bg-gray-400"
   end %>
-<div class="flex items-center pl-2 sm:pl-4 py-1 text-sm sm:text-base text-white z-20 animate-flash <%= bg_color %>">
+<div class="flex items-center pl-2 sm:pl-4 py-1 text-sm text-white z-20 animate-flash <%= bg_color %>">
   <%= simple_format(message) %>
 </div>
 <% end %>
