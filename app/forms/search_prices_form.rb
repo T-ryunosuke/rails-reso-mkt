@@ -2,7 +2,7 @@ class SearchPricesForm
   include ActiveModel::Model
   include ActiveModel::Attributes
 
-  attribute :city_id, :integer, default: 1
+  attribute :city_id, :integer
   attribute :item_name, :string
   attribute :item_id, :integer
   attribute :min_price, :integer
@@ -69,7 +69,9 @@ class SearchPricesForm
 
   # ソート処理
   def apply_sorting(scope)
-    scope = scope.joins(:item)
+    interests_subquery = Interest.where("interests.price_id = prices.id").select("1").limit(1)
+    scope = scope.joins(:item).select("prices.*, EXISTS(#{interests_subquery.to_sql}) AS has_interests").order(Arel.sql("has_interests DESC"))
+
     case sort_key
     when "newest"
       scope.order(updated_at: :desc, "items.name": :asc)

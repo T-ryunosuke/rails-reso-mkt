@@ -2,8 +2,10 @@ class PricesController < ApplicationController
   # controllersのconcernsにあるframeable.rbをインクルード
   include Frameable
   # 本番環境で指定したアクションへのリクエストがTurboFrameでない場合は、トップページにリダイレクトされる。
-  before_action :ensure_turbo_frame_response, only: %w[select_city confirm], if: :production_environment?
+  before_action :ensure_turbo_frame_response, only: %w[single_edit select_city confirm], if: :production_environment?
   before_action :authenticate, only: [ :new ]
+  before_action :set_price, only: [ :single_edit, :update ]
+
 
   # ActionController::InvalidAuthenticityTokenのエラー回避
   protect_from_forgery
@@ -48,6 +50,52 @@ class PricesController < ApplicationController
       redirect_to prices_path, success: "新しい価格データを追加しました。"
     else
       redirect_to new_price_path, alert: "追加できる価格データがありません。"
+    end
+  end
+
+  def single_edit
+  end
+
+
+  def update
+    ActiveRecord::Base.transaction do
+      if @price.interests.present?
+        @price.interests.destroy_all
+      end
+
+      if @price.price_percentage == price_params[:price_percentage].to_i &&  @price.trend.to_s == price_params[:trend]
+
+        # 同じ値の場合はupdated_atだけを更新
+        @price.touch(:updated_at)
+        flash.now[:success] = "値に変更はないようですが、最終更新日時を更新しました。"
+
+      elsif @price.update(price_params)
+
+        flash.now[:success] = "ありがとうございます！更新しました。"
+
+      else
+
+        flash.now[:danger] = "更新できませんでした。"
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update("flash", partial: "shared/flash_message"),
+              turbo_stream.update("modal", "")
+            ]
+          end
+        end
+        raise ActiveRecord::Rollback
+      end
+
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("flash", partial: "shared/flash_message"),
+            turbo_stream.update("modal", ""),
+            turbo_stream.replace(@price, partial: "prices/price", locals: { price: @price })
+          ]
+        end
+      end
     end
   end
 
@@ -180,5 +228,13 @@ class PricesController < ApplicationController
   # :search_prices_formはasで指定しない限り自動的にオブジェクトのクラス名となる
   def search_params
     params.fetch(:search_prices_form, {}).permit(:city_id, :item_name, :min_price, :max_price, :trend, :interested, :sort_key)
+  end
+
+  def set_price
+    @price = Price.find(params[:id])
+  end
+
+  def price_params
+    params.require(:price).permit(:price_percentage, :trend)
   end
 end
