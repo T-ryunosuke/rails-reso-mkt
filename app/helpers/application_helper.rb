@@ -15,6 +15,7 @@ module ApplicationHelper
         title: "レゾナンスの価格情報管理",
         description: "Resonance-MKTは、各都市・各商品の価格情報を確認/更新できるアプリです。",
         type: "website",
+        url: request.original_url,
         image: image_url("image_for_og.png"),
         local: "ja-JP"
       },
