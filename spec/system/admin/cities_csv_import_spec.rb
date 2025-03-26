@@ -21,7 +21,7 @@ RSpec.describe "都市のCSVインポート", type: :system do
     # テスト用CSVファイルを作成
     # Tempfile は一時ファイルを作成・管理するためのクラス
     # File.write ではなく Tempfile を使うことで自動削除されるので、後処理を忘れる心配がない。
-    Tempfile.create(["test", ".csv"]) do |csv|
+    Tempfile.create([ "test", ".csv" ]) do |csv|
       csv.write("name\nTokyo\nOsaka\nNagoya\n")
       csv.rewind
 
@@ -37,7 +37,7 @@ RSpec.describe "都市のCSVインポート", type: :system do
   end
 
   it "CSVの形式が不正な場合、エラーメッセージが表示される" do
-    Tempfile.create(["invalid", ".csv"]) do |csv|
+    Tempfile.create([ "invalid", ".csv" ]) do |csv|
       csv.write("city\nTokyo\nOsaka\n")
       # ポインタを先頭に
       csv.rewind
@@ -51,7 +51,7 @@ RSpec.describe "都市のCSVインポート", type: :system do
 
 
   it "CSV形式ではないファイルをアップロードするとエラーメッセージが表示される" do
-    Tempfile.create(["test", ".txt"]) do |txt|
+    Tempfile.create([ "test", ".txt" ]) do |txt|
       txt.write("txtファイルです。")
       txt.rewind
 
