@@ -81,4 +81,18 @@ RSpec.configure do |config|
 
   # helperメソッドをテストで使えるようにRSpec.configureブロック内に追記
   config.include FileUploadHelper
+
+  # Seleniumを使ってリモートでブラウザを操作する
+  config.before(:each, type: :system) do
+    driven_by :remote_chrome
+    # コンテナのIPを取得
+    Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+    # ポートを指定
+    Capybara.server_port = 4444
+    # Capybara.server_host と Capybara.server_port に基づいて、テスト対象のアプリケーションのURLを生成
+    Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
+    # 隠れた要素を無視するかどうかを設定するオプション
+    # falseの場合、隠れた要素もテストの対象となる
+    Capybara.ignore_hidden_elements = false
+  end
 end
